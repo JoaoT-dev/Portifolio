@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>João - Portifólio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Nunito', sans-serif;
+      background-color: #2c2c2c;
+      color: #e0e0e0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 800px;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+    }
+
+    header {
+      text-align: center;
+    }
+
+    header h1 {
+      color: #e63946;
+      font-weight: 500;
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-weight: 300;
+      font-size: 20px;
+    }
+
+    .photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 20px auto;
+      display: block;
+      border: 3px solid #e63946;
+    }
+
+    .section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .section h2 {
+      color: #e63946;
+      font-weight: 500;
+      font-size: 32px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .line {
+      width: 600px;
+      max-width: 100%;
+      height: 2px;
+      background-color: #e63946;
+      margin-bottom: 20px;
+    }
+
+    .section-content {
+      max-width: 600px;
+      text-align: left;
+      font-weight: 300;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    .section-content ul {
+      padding-left: 20px;
+      margin: 0;
+    }
+
+    /* Animação padrão */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .animate-on-scroll.in-view {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header>
+      <h1 class="animate-on-scroll">João Paulo</h1>
+      <p class="animate-on-scroll">Cloud  |  Monitoramento  |  DevOps</p>
+      <img src="images\imagem-min.png" alt="Foto Profissonal" class="photo animate-on-scroll">
+    </header>
+
+    <div class="section">
+      <h2 class="animate-on-scroll">Resumo</h2>
+      <div class="line animate-on-scroll"></div>
+      <div class="section-content animate-on-scroll">
+<p>
+Sou estudante de Redes de Computadores, sempre buscando evoluir e explorar novas tecnologias. Tenho experiência prática com monitoramento e automação usando ferramentas como Zabbix e Grafana, além de trabalhar com sistemas Linux, máquinas virtuais e soluções em nuvem como AWS e Azure.
+</p>
+<p>
+Sou movido pela curiosidade e gosto de estar sempre aprendendo sobre tudo que envolve computadores, redes e o mundo web. Acredito que a tecnologia é um universo vasto demais para focarmos em uma só área, então estou sempre me aventurando em diferentes tópicos, desde infraestrutura até desenvolvimento.
+</p>
+<p>
+Quando não estou mexendo com servidores ou scripts, gosto de relaxar jogando um videogame. Afinal, nada como equilibrar a lógica das máquinas com um pouco de diversão.
+</p>
+<p>
+Se quiser trocar uma ideia sobre tecnologia, redes ou até sobre games, fique à vontade para entrar em contato!
+        </p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="animate-on-scroll">Projetos</h2>
+      <div class="line animate-on-scroll"></div>
+      <div class="section-content animate-on-scroll">
+        <ul>
+          <li>Casa inteligente para PCDs com uso de IoT (SmartHome Sensations)</li>
+          <li>Monitoramento On-Premises com uso de Zabbix e Grafana (SentinelWatch)</li>
+          <li>Infraestrutura em núvem usando AWS e Azure (CommerCloud)</li>
+        
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="animate-on-scroll">Experiência</h2>
+      <div class="line animate-on-scroll"></div>
+      <div class="section-content animate-on-scroll">
+        <ul>
+          <li>Administração de servidores Linux para laboratório de redes</li>
+          <li>Configuração de topologias virtuais para simulações de rede</li>
+          <li>Participação em grupos de estudo e eventos técnicos</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="animate-on-scroll">Certificados</h2>
+      <div class="line animate-on-scroll"></div>
+      <div class="section-content animate-on-scroll">
+        <ul>
+          <li>CCNA: Introduction to networks</li>
+          <li>CCNA: Switching, Routing, and Wireless Essentials</li>
+          <li>AWS Academy: Cloud Foundations</li>
+          <li>AWS Academy: Cloud Developing</li>
+        </ul>
+      </div>
+    </div>
+
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          // Definindo o delay em cascata
+          el.style.transitionDelay = `${index * 100}ms`;
+          el.classList.add('in-view');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
