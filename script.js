@@ -1,5 +1,5 @@
 // -------------------------------------------
-// 1. NOVAS PALETAS DE CORES (Vermelho/Preto)
+// 1. PALETAS DE CORES
 // -------------------------------------------
 
 const colorPalettes = [
@@ -21,7 +21,7 @@ const colorPalettes = [
         textLight: '#EBEBEB',
         textSubtle: '#AAAAAA'
     },
-    // Paleta 3: Complementar Suave (Mantida como opção)
+    // Paleta 3: Complementar Suave (Azul/Vermelho)
     {
         primary: '#E63946',
         secondary: '#457B9D',
@@ -33,14 +33,15 @@ const colorPalettes = [
 ];
 
 // -------------------------------------------
-// 2. LÓGICA DE APLICAÇÃO DE CORES
+// 2. LÓGICA DE APLICAÇÃO DE CORES E DEGRADÊ
 // -------------------------------------------
 
 function applyRandomPalette() {
     const randomIndex = Math.floor(Math.random() * colorPalettes.length);
     const selectedPalette = colorPalettes[randomIndex];
-    const root = document.documentElement;
+    const root = document.documentElement; // Seleciona o elemento <html> para acessar as variáveis CSS
 
+    // Aplica as cores às variáveis CSS
     root.style.setProperty('--primary-color', selectedPalette.primary);
     root.style.setProperty('--secondary-color', selectedPalette.secondary);
     root.style.setProperty('--background-dark', selectedPalette.bgDark);
@@ -48,11 +49,11 @@ function applyRandomPalette() {
     root.style.setProperty('--text-color-light', selectedPalette.textLight);
     root.style.setProperty('--text-color-subtle', selectedPalette.textSubtle);
     
-    // 📌 ATUALIZA O DEGRADÊ DO BODY COM BASE NA NOVA PALETA
+    // ATUALIZA O DEGRADÊ DO BODY
     document.body.style.backgroundImage = `
         linear-gradient(to bottom, ${selectedPalette.bgDark}, #000000)
     `;
-    document.body.style.backgroundAttachment = 'fixed'; // Mantém o degradê fixo
+    document.body.style.backgroundAttachment = 'fixed'; 
 }
 
 // -------------------------------------------
