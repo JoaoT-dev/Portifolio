@@ -1,9 +1,27 @@
 // -------------------------------------------
-// 1. PALETAS DE CORES
+// 1. NOVAS PALETAS DE CORES (Vermelho/Preto)
 // -------------------------------------------
 
 const colorPalettes = [
-    // Paleta 1: Complementar Suave (Vermelho/Coral & Azul-Petróleo/Tech)
+    // Paleta 1: Cyberpunk (Vermelho Neon + Preto Absoluto)
+    {
+        primary: '#FF3366', // Destaque Neon
+        secondary: '#00CED1', // Ciano (Contraste Frio)
+        bgDark: '#0A0A0A', // Fundo Principal (Quase Preto)
+        bgContainer: '#1C1C1C', // Fundo das Caixas
+        textLight: '#F0F0F0',
+        textSubtle: '#B8B8B8'
+    },
+    // Paleta 2: Sangue e Aço (Vermelho Profundo + Cinza Metálico)
+    {
+        primary: '#B00020', // Destaque Bordô/Rico
+        secondary: '#808080', // Cinza Metálico
+        bgDark: '#121212', // Fundo Principal
+        bgContainer: '#2C2C2C', // Fundo das Caixas
+        textLight: '#EBEBEB',
+        textSubtle: '#AAAAAA'
+    },
+    // Paleta 3: Complementar Suave (Mantida como opção)
     {
         primary: '#E63946',
         secondary: '#457B9D',
@@ -11,24 +29,6 @@ const colorPalettes = [
         bgContainer: '#28476B',
         textLight: '#F1FAEE',
         textSubtle: '#A8DADC'
-    },
-    // Paleta 2: Análoga Moderna (Ciano Elétrico & Azul Profundo)
-    {
-        primary: '#00D0FF', // Ciano Elétrico (Destaque)
-        secondary: '#006D77', // Azul-Petróleo Escuro (Borda/Secundário)
-        bgDark: '#011627', // Azul Quase Preto (Fundo Principal)
-        bgContainer: '#042A46', // Azul Escuro (Fundo Container)
-        textLight: '#EAF2F8',
-        textSubtle: '#B8C3C8'
-    },
-    // Paleta 3: Quente e Dramática (Laranja Queimado & Roxo Escuro)
-    {
-        primary: '#FF6F61', // Laranja Queimado (Destaque)
-        secondary: '#9336A4', // Roxo Profundo (Borda/Secundário)
-        bgDark: '#1A112D', // Vinho Escuro/Roxo (Fundo Principal)
-        bgContainer: '#2C1B4A', // Roxo mais claro (Fundo Container)
-        textLight: '#F5E8D8',
-        textSubtle: '#D8BFD8'
     }
 ];
 
@@ -39,7 +39,7 @@ const colorPalettes = [
 function applyRandomPalette() {
     const randomIndex = Math.floor(Math.random() * colorPalettes.length);
     const selectedPalette = colorPalettes[randomIndex];
-    const root = document.documentElement; // Seleciona o elemento <html> para acessar as variáveis CSS
+    const root = document.documentElement;
 
     root.style.setProperty('--primary-color', selectedPalette.primary);
     root.style.setProperty('--secondary-color', selectedPalette.secondary);
@@ -47,6 +47,12 @@ function applyRandomPalette() {
     root.style.setProperty('--background-container', selectedPalette.bgContainer);
     root.style.setProperty('--text-color-light', selectedPalette.textLight);
     root.style.setProperty('--text-color-subtle', selectedPalette.textSubtle);
+    
+    // 📌 ATUALIZA O DEGRADÊ DO BODY COM BASE NA NOVA PALETA
+    document.body.style.backgroundImage = `
+        linear-gradient(to bottom, ${selectedPalette.bgDark}, #000000)
+    `;
+    document.body.style.backgroundAttachment = 'fixed'; // Mantém o degradê fixo
 }
 
 // -------------------------------------------
@@ -72,7 +78,7 @@ const observer = new IntersectionObserver((entries) => {
 // -------------------------------------------
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Aplica a paleta aleatória
+    // 1. Aplica a paleta aleatória e o degradê
     applyRandomPalette(); 
     
     // 2. Observa os elementos para animação
