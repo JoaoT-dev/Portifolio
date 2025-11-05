@@ -7,16 +7,38 @@
     
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;500;700;900&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <main class="container">
+    
+    <nav class="sticky-nav">
+        <div class="container nav-content">
+            <a href="#inicio" class="logo-link">
+                <span class="logo-icon">JP</span>
+                <span class="logo-text">João Paulo</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="#resumo" class="nav-item">Resumo</a>
+                <a href="#projetos" class="nav-item">Projetos</a>
+                <a href="#experiencia" class="nav-item">Habilidades</a>
+                <a href="#certificados" class="nav-item">Certificados</a>
+            </div>
+            
+            <button class="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
 
-        <header id="inicio">
+    <main class="container main-content">
+
+        <header id="inicio" class="intro-section">
             <h1 class="animate-on-scroll">João Paulo</h1>
-            <p class="animate-on-scroll">Cloud | Monitoramento | Automação</p>
+            <p class="animate-on-scroll role-description">Cloud | Monitoramento | Automação</p>
             <img 
                 src="images/imagem-min.png" 
                 alt="Foto Profissonal de João Paulo" 
@@ -24,9 +46,10 @@
             >
         </header>
 
+        <hr class="separator animate-on-scroll">
+
         <section class="section" id="resumo">
-            <h2 class="animate-on-scroll">Resumo Profissional</h2>
-            <div class="line animate-on-scroll"></div>
+            <h2 class="animate-on-scroll section-title">Resumo Profissional</h2>
             <div class="section-content animate-on-scroll">
                 <p>
                     Sou estudante de Redes de Computadores com experiência prática em <strong>monitoramento e automação</strong> (Zabbix e Grafana), sistemas <strong>Linux</strong> e soluções <strong>Cloud</strong> (AWS e Azure). Minha paixão me move a explorar desde a infraestrutura de redes até o desenvolvimento de soluções.
@@ -34,15 +57,13 @@
                 <p>
                     Busco equilibrar o rigor técnico com a diversão (gosto de relaxar jogando videogame), e estou sempre aberto a <strong>novos desafios</strong> e aprendizados no vasto universo da tecnologia.
                 </p>
-                <p>
-                    Se quiser trocar uma ideia sobre tecnologia, redes ou até sobre games, fique à vontade para me <strong>conectar</strong>!
-                </p>
             </div>
         </section>
 
+        <hr class="separator animate-on-scroll">
+
         <section class="section" id="projetos">
-            <h2 class="animate-on-scroll">Projetos em Destaque</h2>
-            <div class="line animate-on-scroll"></div>
+            <h2 class="animate-on-scroll section-title">Projetos em Destaque</h2>
             <div class="section-content animate-on-scroll">
                 <ul>
                     <li><strong>SmartHome Sensations:</strong> Casa inteligente para PCDs com uso de IoT.</li>
@@ -52,9 +73,10 @@
             </div>
         </section>
 
+        <hr class="separator animate-on-scroll">
+
         <section class="section" id="experiencia">
-            <h2 class="animate-on-scroll">Experiência & Habilidades</h2>
-            <div class="line animate-on-scroll"></div>
+            <h2 class="animate-on-scroll section-title">Experiência & Habilidades</h2>
             <div class="section-content animate-on-scroll">
                 <ul>
                     <li><strong>Administração Linux:</strong> Gerenciamento de servidores para laboratório de redes.</li>
@@ -64,9 +86,10 @@
             </div>
         </section>
 
+        <hr class="separator animate-on-scroll">
+
         <section class="section" id="certificados">
-            <h2 class="animate-on-scroll">Certificações</h2>
-            <div class="line animate-on-scroll"></div>
+            <h2 class="animate-on-scroll section-title">Certificações</h2>
             <div class="section-content animate-on-scroll">
                 <ul>
                     <li><strong>CCNA:</strong> Introduction to networks</li>
@@ -78,8 +101,7 @@
         </section>
 
         <footer class="section" id="contato">
-            <h2 class="animate-on-scroll">Conecte-se Comigo</h2>
-            <div class="line animate-on-scroll"></div>
+            <h2 class="animate-on-scroll section-title">Conecte-se Comigo</h2>
             <div class="contact-links animate-on-scroll">
                 <a href="https://www.linkedin.com/in/joaotombi/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin fa-2x"></i></a>
                 <a href="https://github.com/JoaoT-dev" target="_blank" aria-label="GitHub"><i class="fab fa-github fa-2x"></i></a>
