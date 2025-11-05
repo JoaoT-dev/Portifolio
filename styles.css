@@ -24,6 +24,26 @@ body {
     scroll-behavior: smooth;
 }
 
+/* No arquivo styles.css: */
+
+
+body {
+    margin: 0;
+    font-family: 'Nunito', sans-serif;
+    /* REMOVIDO: background-color: var(--background-dark); */
+    
+    /* 📌 DEGRADÊ DE FUNDO: O JS VAI DEFINIR O BACKGROUND-IMAGE */
+    background-color: #000000; /* Cor de fallback caso o degradê falhe */
+    background-image: linear-gradient(to bottom, var(--background-dark), #000000); 
+    background-attachment: fixed; /* Fixa o degradê para um efeito visual moderno */
+    
+    color: var(--text-color-light);
+    display: flex;
+    justify-content: center;
+    scroll-behavior: smooth;
+}
+
+
 .container {
     max-width: 900px;
     width: 100%;
