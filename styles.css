@@ -2,47 +2,32 @@
 /* 1. VARIÁVEIS CSS (PONTO DE ENTRADA DO JAVASCRIPT) */
 /* ------------------------------------------- */
 :root {
-    /* Fallback colors (caso o JS falhe ou demore a carregar) */
-    --primary-color: #E63946; 
-    --secondary-color: #457B9D;
-    --background-dark: #1D3557; 
-    --background-container: #28476B;
-    --text-color-light: #F1FAEE;
-    --text-color-subtle: #A8DADC;
+    /* Fallback colors (caso o JS falhe) - Paleta Cyberpunk */
+    --primary-color: #FF3366; 
+    --secondary-color: #00CED1;
+    --background-dark: #0A0A0A; 
+    --background-container: #1C1C1C;
+    --text-color-light: #F0F0F0;
+    --text-color-subtle: #B8B8B8;
 }
 
 /* ------------------------------------------- */
-/* 2. ESTILOS GERAIS E TIPOGRAFIA */
+/* 2. ESTILOS GERAIS, DEGRADÊ E TIPOGRAFIA */
 /* ------------------------------------------- */
 body {
     margin: 0;
     font-family: 'Nunito', sans-serif;
-    background-color: var(--background-dark);
-    color: var(--text-color-light);
-    display: flex;
-    justify-content: center;
-    scroll-behavior: smooth;
-}
-
-/* No arquivo styles.css: */
-
-
-body {
-    margin: 0;
-    font-family: 'Nunito', sans-serif;
-    /* REMOVIDO: background-color: var(--background-dark); */
     
     /* 📌 DEGRADÊ DE FUNDO: O JS VAI DEFINIR O BACKGROUND-IMAGE */
-    background-color: #000000; /* Cor de fallback caso o degradê falhe */
+    background-color: #000000; 
     background-image: linear-gradient(to bottom, var(--background-dark), #000000); 
-    background-attachment: fixed; /* Fixa o degradê para um efeito visual moderno */
+    background-attachment: fixed; /* Fixa o degradê para um efeito moderno */
     
     color: var(--text-color-light);
     display: flex;
     justify-content: center;
     scroll-behavior: smooth;
 }
-
 
 .container {
     max-width: 900px;
