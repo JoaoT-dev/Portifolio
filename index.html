@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>João Paulo - JoaoT-Dev | Cloud | Networking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ------------------------------------------- */
+        /* 1. VARIÁVEIS CSS (SERÃO PREENCHIDAS PELO JS) */
+        /* ------------------------------------------- */
+        :root {
+            /* Fallback colors (Paleta Padrão: Azul Escuro e Vermelho/Coral) */
+            --primary-color: #E63946;
+            --secondary-color: #457B9D;
+            --background-dark: #1D3557; 
+            --background-container: #28476B;
+            --text-color-light: #F1FAEE;
+            --text-color-subtle: #A8DADC;
+        }
+
+        /* ------------------------------------------- */
+        /* 2. ESTILOS BASE E LAYOUT */
+        /* ------------------------------------------- */
+        body {
+            margin: 0;
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-color-light);
+            display: flex;
+            justify-content: center;
+            scroll-behavior: smooth;
+            /* Garante que a transição de cor seja suave ao carregar */
+            transition: background-color 0.5s ease;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+            background-color: var(--background-container);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* HEADER */
+        header { text-align: center; }
+
+        header h1 {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 56px;
+            margin-bottom: 5px;
+            letter-spacing: 1.5px;
+        }
+
+        header p {
+            font-weight: 500;
+            font-size: 24px;
+            color: var(--text-color-subtle);
+        }
+
+        .photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 30px auto;
+            display: block;
+            /* Estilo de borda com a cor secundária e sombra */
+            border: 5px solid var(--secondary-color);
+            box-shadow: 0 0 20px var(--secondary-color);
+        }
+
+        /* SEÇÃO */
+        .section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 36px;
+            margin-bottom: 10px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .line {
+            width: 150px;
+            height: 4px;
+            background-color: var(--primary-color);
+            margin-bottom: 40px;
+            border-radius: 2px;
+        }
+
+        .section-content {
+            max-width: 700px;
+            width: 100%;
+            text-align: justify;
+            font-weight: 300;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        
+        .section-content p strong {
+            color: var(--text-color-subtle);
+            font-weight: 500;
+        }
+
+        /* ESTILO DE LISTA (PROJETOS/CERTIFICADOS) */
+        .section-content ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .section-content li {
+            padding: 12px 0;
+            border-bottom: 1px dashed var(--secondary-color);
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .section-content li::before {
+            content: '★'; /* Ícone de estrela */
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-size: 1em;
+            line-height: 1.5;
+        }
+
+        /* FOOTER E LINKS DE CONTATO */
+        .contact-links {
+            margin-top: 20px;
+            margin-bottom: 40px;
+            display: flex;
+            gap: 30px;
+        }
+
+        .contact-links a {
+            color: var(--text-color-light);
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .contact-links a:hover {
+            color: var(--primary-color);
+            transform: scale(1.2);
+        }
+
+        .footer-text {
+            font-size: 14px;
+            color: var(--text-color-subtle);
+            padding-top: 20px;
+            border-top: 1px solid var(--secondary-color);
+            width: 100%;
+            text-align: center;
+        }
+
+        /* RESPONSIVIDADE E ANIMAÇÃO */
+        @media (max-width: 600px) {
+            header h1 { font-size: 48px; }
+            .container { padding: 20px 15px; gap: 60px; }
+            .section h2 { font-size: 32px; }
+        }
+
+        /* ANIMAÇÃO SIMPLES (FADE-IN E SLIDE-UP) */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+
+        .animate-on-scroll.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+
+        <header id="inicio">
+            <h1 class="animate-on-scroll">João Paulo</h1>
+            <p class="animate-on-scroll">Cloud | Networking | Linux | Monitoring</p>
+            <img src="profile.jpg" alt="Foto Profissonal de João Paulo" class="photo animate-on-scroll">
+        </header>
+
+        <section class="section" id="resumo">
+            <h2 class="animate-on-scroll">Resumo Profissional</h2>
+            <div class="line animate-on-scroll"></div>
+            <div class="section-content animate-on-scroll">
+                <p>
+                    Estudante de Redes de Computadores pelo SENAI Paulo Antônio Skaf, focado em **Segurança, Disponibilidade e Escalabilidade**. Sou movido pela resolução de problemas e pelo aprendizado contínuo, aplicando minha experiência metódica em:
+                </p>
+                <ul>
+                    <li>**Monitoramento e Automação:** Experiência prática com **Prometheus**, **Zabbix** e **Grafana**.</li>
+                    <li>**Cloud Services:** Implantação e configuração de ambientes em nuvem **AWS** e **Azure**.</li>
+                    <li>**Infraestrutura:** Administração de servidores **Linux** e configuração de ambientes virtuais e reais.</li>
+                </ul>
+                <p>
+                    Acredito no equilíbrio entre a lógica das máquinas e a paixão (como o desenvolvimento de jogos), e estou sempre aberto a novos desafios e conexões.
+                </p>
+            </div>
+        </section>
+
+        <section class="section" id="projetos">
+            <h2 class="animate-on-scroll">Projetos em Destaque</h2>
+            <div class="line animate-on-scroll"></div>
+            <div class="section-content animate-on-scroll">
+                <ul>
+                    <li>
+                        <strong>Monitoramento Zabbix + Grafana:</strong> Otimização da gestão de infraestrutura, garantindo **robustez** e **eficiência operacional** através de dashboards visuais.
+                    </li>
+                    <li>
+                        <strong>Rede Multicloud AWS e Azure:</strong> Arquitetura moderna e flexível, estabelecendo comunicação **segura e estável** entre as plataformas, preparada para alta disponibilidade.
+                    </li>
+                    <li>
+                        <strong>Casa Inteligente (SmartHome Sensations):</strong> Projeto de IoT para PCDs, demonstrando foco em **acessibilidade**, integração de sistemas e atenção à segurança.
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section" id="certificados">
+            <h2 class="animate-on-scroll">Certificações</h2>
+            <div class="line animate-on-scroll"></div>
+            <div class="section-content animate-on-scroll">
+                <ul>
+                    <li>**CCNA:** Introduction to networks</li>
+                    <li>**CCNA:** Switching, Routing, and Wireless Essentials</li>
+                    <li>**AWS Academy:** Cloud Foundations</li>
+                    <li>**AWS Academy:** Cloud Developing</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer class="section" id="contato">
+            <h2 class="animate-on-scroll">Conecte-se Comigo</h2>
+            <div class="line animate-on-scroll"></div>
+            <div class="contact-links animate-on-scroll">
+                <a href="https://www.linkedin.com/in/joaotombi/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin fa-2x"></i></a>
+                <a href="https://github.com/JoaoT-dev" target="_blank" aria-label="GitHub"><i class="fab fa-github fa-2x"></i></a>
+                <a href="mailto:seu.email@exemplo.com" aria-label="Email"><i class="fas fa-envelope fa-2x"></i></a>
+            </div>
+            <p class="footer-text animate-on-scroll">
+                &copy; 2025 João Paulo | Desenvolvido com paixão por tecnologia.
+            </p>
+        </footer>
+
+    </main>
+
+    <script>
+        // -------------------------------------------
+        // JAVASCRIPT: PALETAS DE CORES E ANIMAÇÃO
+        // -------------------------------------------
+
+        // --- PALETAS DE CORES (Inspirado no modelo original) ---
+        const colorPalettes = [
+            // Paleta 1: Padrão (Vermelho/Coral & Azul-Petróleo/Tech)
+            {
+                primary: '#E63946', secondary: '#457B9D', bgDark: '#1D3557', 
+                bgContainer: '#28476B', textLight: '#F1FAEE', textSubtle: '#A8DADC'
+            },
+            // Paleta 2: Análoga Moderna (Ciano Elétrico & Azul Profundo)
+            {
+                primary: '#00D0FF', secondary: '#006D77', bgDark: '#011627', 
+                bgContainer: '#042A46', textLight: '#EAF2F8', textSubtle: '#B8C3C8'
+            },
+            // Paleta 3: Quente e Dramática (Laranja Queimado & Roxo Escuro)
+            {
+                primary: '#FF6F61', secondary: '#9336A4', bgDark: '#1A112D', 
+                bgContainer: '#2C1B4A', textLight: '#F5E8D8', textSubtle: '#D8BFD8'
+            }
+        ];
+
+        // 1. SELECIONA PALETA ALEATÓRIA
+        function applyRandomPalette() {
+            const randomIndex = Math.floor(Math.random() * colorPalettes.length);
+            const selectedPalette = colorPalettes[randomIndex];
+            const root = document.documentElement;
+
+            root.style.setProperty('--primary-color', selectedPalette.primary);
+            root.style.setProperty('--secondary-color', selectedPalette.secondary);
+            root.style.setProperty('--background-dark', selectedPalette.bgDark);
+            root.style.setProperty('--background-container', selectedPalette.bgContainer);
+            root.style.setProperty('--text-color-light', selectedPalette.textLight);
+            root.style.setProperty('--text-color-subtle', selectedPalette.textSubtle);
+        }
+
+        // 2. LÓGICA DE ANIMAÇÃO AO SCROLL (Intersection Observer)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, observerOptions);
+
+        // 3. INICIALIZAÇÃO
+        document.addEventListener('DOMContentLoaded', () => {
+            // Aplica a paleta antes de tudo
+            applyRandomPalette();
+            
+            // Observa os elementos para animação
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
