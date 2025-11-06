@@ -1,0 +1,207 @@
+/* Variáveis para tema escuro (Dark Mode) */
+:root {
+    --bg-color: #202023;       /* Fundo escuro */
+    --text-color: #fff;        /* Texto claro */
+    --primary-color: #E63946;  /* Cor de destaque (Seu Coral/Vermelho) */
+    --secondary-bg: #3c3c43;   /* Fundo para caixas/seções (Dark Gray) */
+    --link-color: #A8DADC;     /* Cor dos links e texto sutil (Seu Azul Claro) */
+    --font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+}
+
+/* Reset básico e aplicação do tema */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    line-height: 1.6;
+}
+
+/* Container para centralizar e dar padding */
+.container {
+    max-width: 768px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 15px;
+}
+
+/* --- Navegação (Navbar) --- */
+.navbar {
+    background-color: var(--bg-color);
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+nav a {
+    color: var(--link-color);
+    text-decoration: none;
+    margin-left: 15px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--text-color); 
+}
+
+.dark-mode-toggle {
+    background: var(--secondary-bg);
+    border: none;
+    color: var(--text-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 15px;
+    font-size: 1rem;
+}
+
+/* --- Seção Principal (Hero) --- */
+.hero-section {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.intro-text {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Perfil (Caixa com foto e nome) */
+.profile-box {
+    display: flex;
+    align-items: center;
+    background-color: var(--secondary-bg);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 40px;
+}
+
+.profile-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+    border: 3px solid var(--primary-color);
+}
+
+.profile-info h1 {
+    font-size: 2rem;
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.profile-info p {
+    color: var(--link-color);
+    margin: 5px 0 0 0;
+}
+
+/* --- Seções de Conteúdo --- */
+.section {
+    margin-top: 40px;
+    padding: 20px 0;
+}
+
+.section h2 {
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--secondary-bg);
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* Botão de Portfólio */
+.portfolio-button {
+    display: inline-block; /* Para que pareça um botão, mesmo sendo um <a> */
+    background-color: var(--primary-color);
+    color: var(--bg-color); 
+    text-decoration: none;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.portfolio-button:hover {
+    background-color: #ff5c6a; /* Tom ligeiramente mais claro */
+}
+
+/* Estilo para lista de certificações (seção simples) */
+.section ul {
+    list-style: disc;
+    margin-left: 20px;
+}
+
+.section li {
+    margin-bottom: 5px;
+}
+
+/* --- Rodapé (Footer) --- */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--link-color);
+    font-size: 0.9rem;
+}
+
+/* Responsividade básica */
+@media (max-width: 600px) {
+    .profile-box {
+        flex-direction: column;
+        text-align: center;
+    }
+    .profile-photo {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+}
+
+/* --- Transição suave entre os temas --- */
+body, .navbar, .profile-box, .portfolio-button {
+    transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease;
+}
+
+/* --- Tema Claro (bege suave) --- */
+body.light-mode {
+    --bg-color: #f5f2e9;        /* Bege claro */
+    --text-color: #2b2b2b;      /* Cinza escuro */
+    --primary-color: #b85c38;   /* Tom terroso (contraste agradável) */
+    --secondary-bg: #e8e3d9;    /* Fundo de caixas */
+    --link-color: #6a5f4b;      /* Marrom acinzentado */
+}
+
+body.light-mode .dark-mode-toggle {
+    background: var(--secondary-bg);
+    color: var(--text-color);
+}
+
+body.light-mode nav a:hover {
+    color: var(--primary-color);
+}
