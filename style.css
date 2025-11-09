@@ -193,3 +193,43 @@ body.light-mode .dark-mode-toggle {
 body.light-mode nav a:hover {
     color: var(--primary-color);
 }
+
+
+
+/* "Botão" secreto disfarçado de texto */
+.secret-button {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font: inherit;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+.secret-button:hover {
+    color: var(--link-color);
+    opacity: 1;
+    text-decoration: underline;
+}
+
+/* Esconde o checkbox (gatilho invisível) */
+.easter-toggle {
+    display: none;
+}
+
+/* A seção secreta começa invisível */
+.easter-egg {
+    display: none;
+    color: var(--primary-color, );
+    text-align: center;
+    font-style: italic;
+}
+
+/* Quando o checkbox é marcado, exibe a seção */
+.easter-toggle:checked~.easter-egg {
+    display: block;
+}
+
