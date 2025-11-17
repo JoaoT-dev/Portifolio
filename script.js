@@ -1,89 +1,400 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const body = document.body;
-    const themeSelector = document.getElementById('theme-selector');
-    const darkModeToggle = document.querySelector('.dark-mode-toggle');
+/* ======================================= */
+/* 1. ESTRUTURA DE VARIÁVEIS E BASE */
+/* ======================================= */
 
-    // Lista dos 5 temas base para remoção/aplicação
-    const baseThemes = [
-        'theme-tech', 'theme-forest', 'theme-lava', 'theme-cyber', 'theme-deepsea'
-    ];
-    
-    const lightModeSuffix = '-light';
+/* --- A. Tema Padrão (:root) --- */
+:root {
+    /* O Padrão é o seu tema original (Dark Mode) */
+    --bg-color: #202023;
+    --text-color: #fff;
+    --primary-color: #E63946;
+    /* Cor principal (Logo, Títulos) */
+    --secondary-bg: #3c3c43;
+    /* Fundo Secundário (Profile Box, Toggles) */
+    --link-color: #A8DADC;
+    /* Cor de links e textos secundários */
+    --font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --hover-color: #fff;
+    /* Cor de hover para links */
+    --button-text-color: var(--bg-color);
+}
 
-    function clearThemes() {
-        // Remove todas as classes de tema customizado e seus modificadores light
-        baseThemes.forEach(cls => {
-            body.classList.remove(cls);
-            body.classList.remove(cls + lightModeSuffix);
-        });
-        // Remove a classe light do tema padrão
-        body.classList.remove('default-light'); 
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos de Base usando Variáveis */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.container {
+    max-width: 768px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 15px;
+}
+
+/* ======================================= */
+/* 2. LAYOUT E COMPONENTES (Usando Variáveis) */
+/* ======================================= */
+
+.navbar {
+    background-color: var(--bg-color);
+    padding: 10px 0;
+    border-bottom: 1px solid var(--secondary-bg);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+nav a {
+    color: var(--link-color);
+    text-decoration: none;
+    margin-left: 15px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--hover-color, var(--text-color));
+}
+
+.dark-mode-toggle,
+.theme-selector {
+    background: var(--secondary-bg);
+    border: 1px solid var(--secondary-bg);
+    color: var(--text-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 1rem;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.hero-section {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.intro-text {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.profile-box {
+    display: flex;
+    align-items: center;
+    background-color: var(--secondary-bg);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 40px;
+}
+
+.profile-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+    border: 3px solid var(--primary-color);
+}
+
+.profile-info h1 {
+    font-size: 2rem;
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.profile-info p {
+    color: var(--link-color);
+    margin: 5px 0 0 0;
+}
+
+.section {
+    margin-top: 40px;
+    padding: 20px 0;
+}
+
+.section h2 {
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--secondary-bg);
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.portfolio-button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--button-text-color);
+    text-decoration: none;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.portfolio-button:hover {
+    filter: brightness(1.1);
+}
+
+.section ul {
+    list-style: disc;
+    margin-left: 20px;
+}
+
+.section li {
+    margin-bottom: 5px;
+}
+
+.contact-links {
+    display: flex;
+    gap: 20px;
+    font-size: 24px;
+}
+
+.contact-links a {
+    color: var(--link-color);
+    transition: color 0.3s;
+}
+
+.contact-links a:hover {
+    color: var(--primary-color);
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+    border-top: 1px solid var(--secondary-bg);
+    color: var(--link-color);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+    .profile-box {
+        flex-direction: column;
+        text-align: center;
     }
 
-    /**
-     * Aplica o tema base e o modo (Dark/Light) salvo.
-     * @param {string} baseTheme - A classe base (ex: 'theme-cyber' ou 'default').
-     * @param {string} mode - 'dark' ou 'light'.
-     */
-    function applyTheme(baseTheme, mode) {
-        clearThemes();
+    .profile-photo {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+}
 
-        if (baseTheme === 'default') {
-            // Se o tema for PADRÃO:
-            localStorage.setItem('baseTheme', 'default');
-            
-            if (mode === 'light') {
-                body.classList.add('default-light'); // Adiciona a classe light do padrão
-                localStorage.setItem('themeMode', 'light');
-                darkModeToggle.textContent = '🌙'; // Se está light, mostra o ícone dark
-            } else {
-                // Modo Dark (do :root)
-                localStorage.setItem('themeMode', 'dark');
-                darkModeToggle.textContent = '☀️'; // Se está dark, mostra o ícone light
-            }
-            return;
-        }
 
-        // --- Aplica Temas Customizados ---
-        body.classList.add(baseTheme); // Aplica a classe base (Dark)
-        localStorage.setItem('baseTheme', baseTheme);
-        
-        if (mode === 'light') {
-            body.classList.add(baseTheme + lightModeSuffix); // Aplica o modificador light
-            localStorage.setItem('themeMode', 'light');
-            darkModeToggle.textContent = '🌙'; 
-        } else {
-            localStorage.setItem('themeMode', 'dark');
-            darkModeToggle.textContent = '☀️'; 
-        }
+/* ======================================= */
+/* 3. TEMAS CUSTOMIZADOS (BASE + LIGHT MODE) */
+/* ======================================= */
+
+/* --- Modificador LIGHT MODE para o Tema Padrão (:root) --- */
+body.default-light {
+    --bg-color: #f5f2e9;
+    --text-color: #2b2b2b;
+    --primary-color: #b85c38;
+    --secondary-bg: #e8e3d9;
+    --link-color: #6a5f4b;
+    --hover-color: var(--primary-color);
+    --button-text-color: var(--bg-color);
+}
+
+
+/* --- 5 TEMAS BASE (DARK MODE PADRÃO) --- */
+
+/* Tema 1: Tech Blue (Dark) */
+body.theme-tech {
+    --bg-color: #1a202c;
+    --text-color: #e2e8f0;
+    --primary-color: #4299e1;
+    --secondary-bg: #2d3748;
+    --link-color: #90cdf4;
+    --hover-color: #fff;
+    --button-text-color: #1a202c;
+}
+
+/* Tema 2: Forest Green (Dark) */
+body.theme-forest {
+    --bg-color: #1c2a1c;
+    --text-color: #e5ffe5;
+    --primary-color: #48bb78;
+    --secondary-bg: #273827;
+    --link-color: #82e0a8;
+    --hover-color: #fff;
+    --button-text-color: #1c2a1c;
+}
+
+/* Tema 3: Lava Red (Dark) */
+body.theme-lava {
+    --bg-color: #2e1010;
+    --text-color: #f7e0e0;
+    --primary-color: #e53e3e;
+    --secondary-bg: #441a1a;
+    --link-color: #feb2b2;
+    --hover-color: #fff;
+    --button-text-color: #2e1010;
+}
+
+/* Tema 4: Cyber Purple (Dark) */
+body.theme-cyber {
+    --bg-color: #1e1124;
+    --text-color: #d8c1e8;
+    --primary-color: #805ad5;
+    --secondary-bg: #2b1836;
+    --link-color: #b794f4;
+    --hover-color: #fff;
+    --button-text-color: #1e1124;
+}
+
+/* Tema 5: Deep Sea (Dark) */
+body.theme-deepsea {
+    --bg-color: #0d2836;
+    --text-color: #c7d1d6;
+    --primary-color: #4fd1c5;
+    --secondary-bg: #14374a;
+    --link-color: #81e6d9;
+    --hover-color: #fff;
+    --button-text-color: #0d2836;
+}
+
+/* --- 5 MODIFICADORES LIGHT MODE (Toggle) --- */
+
+/* Light Mode para Tech Blue */
+body.theme-tech-light {
+    --bg-color: #f0f4f7;
+    --text-color: #1a202c;
+    --secondary-bg: #e2e8f0;
+    --link-color: #2d3748;
+    --hover-color: #4299e1;
+    --button-text-color: #f0f4f7;
+}
+
+/* Light Mode para Forest Green */
+body.theme-forest-light {
+    --bg-color: #f7fff7;
+    --text-color: #1c2a1c;
+    --secondary-bg: #e5ffe5;
+    --link-color: #386641;
+    --hover-color: #48bb78;
+    --button-text-color: #f7fff7;
+}
+
+/* Light Mode para Lava Red */
+body.theme-lava-light {
+    --bg-color: #fffaf0;
+    --text-color: #2e1010;
+    --secondary-bg: #fbe6e6;
+    --link-color: #a04444;
+    --hover-color: #e53e3e;
+    --button-text-color: #fffaf0;
+}
+
+/* Light Mode para Cyber Purple */
+body.theme-cyber-light {
+    --bg-color: #f7f3fb;
+    --text-color: #1e1124;
+    --secondary-bg: #eee4f7;
+    --link-color: #4e365b;
+    --hover-color: #805ad5;
+    --button-text-color: #f7f3fb;
+}
+
+/* Light Mode para Deep Sea */
+body.theme-deepsea-light {
+    --bg-color: #f0f8ff;
+    --text-color: #0d2836;
+    --secondary-bg: #e1f5fe;
+    --link-color: #2a5568;
+    --hover-color: #4fd1c5;
+    --button-text-color: #f0f8ff;
+}
+
+
+/* ======================================= */
+/* 4. ESTILOS DO EASTER EGG (ÁREA SECRETA) */
+/* ======================================= */
+
+.secret-button {
+    background: none;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 15px;
+    text-decoration: none;
+    opacity: 0.8;
+    color: var(--primary-color);
+    transition: color 0.3s, opacity 0.3s;
+}
+
+.secret-button:hover {
+    color: var(--link-color);
+    opacity: 1;
+    text-decoration: underline;
+}
+
+.easter-toggle {
+    display: none;
+}
+
+.easter-egg {
+    display: none;
+    padding: 40px;
+    margin-top: 30px;
+    background-color: var(--secondary-bg);
+    color: var(--text-color);
+    text-align: center;
+    font-style: italic;
+    transition: all 0.3s;
+}
+
+.easter-egg h2 {
+    color: var(--primary-color);
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 15px;
+}
+
+.easter-toggle:checked~.easter-egg {
+    display: block;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
     }
 
-    // --- 1. Carregamento Inicial ---
-    const savedBaseTheme = localStorage.getItem('baseTheme') || 'default';
-    const savedThemeMode = localStorage.getItem('themeMode') || 'dark';
-
-    themeSelector.value = savedBaseTheme;
-    applyTheme(savedBaseTheme, savedThemeMode);
-
-
-    // --- 2. Event Listener para o Seletor de Temas ---
-    themeSelector.addEventListener('change', (event) => {
-        const newBaseTheme = event.target.value;
-        
-        // Ao mudar o tema, mantém o modo (dark/light) que estava ativo
-        const initialMode = localStorage.getItem('themeMode') || 'dark'; 
-        
-        applyTheme(newBaseTheme, initialMode);
-    });
-
-    // --- 3. Event Listener para o Toggle (☀️ / 🌙) ---
-    darkModeToggle.addEventListener('click', () => {
-        const currentBaseTheme = localStorage.getItem('baseTheme') || 'default';
-        
-        // Lógica de alternância funciona para todos os temas
-        const currentMode = localStorage.getItem('themeMode') || 'dark';
-        const newMode = (currentMode === 'dark') ? 'light' : 'dark';
-        
-        applyTheme(currentBaseTheme, newMode);
-    });
-});
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
