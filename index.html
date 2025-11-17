@@ -1,22 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JoaoT-Dev | Cloud | Networking</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    </head>
+</head>
+
 <body>
 
     <header class="navbar">
         <div class="container">
-            <span class="logo">JoaoT-Dev</span> <nav>
+            <span class="logo">JoaoT-Dev</span>
+            <nav>
                 <a href="#resumo">Resumo</a>
                 <a href="#projetos">Projetos</a>
                 <a href="#certificados">Certificações</a>
                 <a href="#contato">Contato</a>
-                <button class="dark-mode-toggle">☀️</button> 
+
+                <button class="dark-mode-toggle" aria-label="Alternar tema claro/escuro">☀️</button>
+
+                <select id="theme-selector" class="theme-selector" aria-label="Seletor de Temas Visuais">
+                    <option value="default">Tema Padrão</option>
+                    <option value="theme-tech">Tech Blue</option>
+                    <option value="theme-forest">Forest Green</option>
+                    <option value="theme-lava">Lava Red</option>
+                    <option value="theme-cyber">Cyber Purple</option>
+                    <option value="theme-deepsea">Deep Sea</option>
+                </select>
+
             </nav>
         </div>
     </header>
@@ -24,9 +38,10 @@
     <main class="hero-section">
         <div class="container">
             <p class="intro-text">Olá, sou João, um profissional focado em Cloud e Infraestrutura!</p>
-            
+
             <div class="profile-box">
-                <img src="images/photo.png" alt="F" class="profile-photo">
+                <img src="images/photo.png" alt="Foto de perfil de João Paulo, especialista em Cloud e Networking"
+                    class="profile-photo">
                 <div class="profile-info">
                     <h1>João Paulo</h1>
                     <p>AWS | Networking | Linux | Monitoring</p>
@@ -36,26 +51,35 @@
             <section id="resumo" class="section">
                 <h2>Resumo Profissional</h2>
                 <p>
-                    Sou movido pelo aprendizado, com interesse em tecnologia e resolução de problemas, em diversas áreas relacionadas, como serviços de nuvem, monitoramento, configuração e virtualização de servidores, com foco em segurança, disponibilidade e escalabilidade.
+                    Sou movido pelo aprendizado, com interesse em tecnologia e resolução de problemas, em diversas áreas
+                    relacionadas, como serviços de nuvem, monitoramento, configuração e virtualização de servidores, com
+                    foco em segurança, disponibilidade e escalabilidade.
                 </p>
                 <p>
-                    Possuo experiência prática em monitoramento de servidores com Prometheus, implantação de ambientes em nuvem AWS e Azure, configuração de ambientes virtuais e reais, garantindo a máxima segurança desses ambientes.
+                    Possuo experiência prática em monitoramento de servidores com Prometheus, implantação de ambientes
+                    em nuvem AWS e Azure, configuração de ambientes virtuais e reais, garantindo a máxima segurança
+                    desses ambientes.
                 </p>
                 <a href="#projetos" class="portfolio-button">Ver Projetos →</a>
             </section>
-            
+
             <section id="projetos" class="section">
                 <h2>Projetos em Destaque</h2>
                 <p><strong>Monitoramento de servidores com Zabbix + Grafana:</strong></p>
                 <p>
-                    O projeto de monitoramento de servidores utilizando Zabbix e Grafana otimizou a gestão da infraestrutura e aumentou a eficiência operacional. O Zabbix foi configurado para coletar dados detalhados (CPU, memória, disco) e o Grafana foi integrado para criar dashboards visuais e intuitivos.
+                    O projeto de monitoramento de servidores utilizando Zabbix e Grafana otimizou a gestão da
+                    infraestrutura e aumentou a eficiência operacional. O Zabbix foi configurado para coletar dados
+                    detalhados (CPU, memória, disco) e o Grafana foi integrado para criar dashboards visuais e
+                    intuitivos.
                 </p>
                 <p><strong>Rede multicloud AWS e Azure:</strong></p>
                 <p>
-                    O projeto de criação de uma rede multicloud entre AWS e Azure estabeleceu comunicação segura e estável entre as plataformas, garantindo integração e alta disponibilidade. Resultou em uma arquitetura moderna, flexível e preparada para futuras expansões.
+                    O projeto de criação de uma rede multicloud entre AWS e Azure estabeleceu comunicação segura e
+                    estável entre as plataformas, garantindo integração e alta disponibilidade. Resultou em uma
+                    arquitetura moderna, flexível e preparada para futuras expansões.
                 </p>
             </section>
-            
+
             <section id="certificados" class="section">
                 <h2>Certificações</h2>
                 <ul>
@@ -65,12 +89,14 @@
                     <li>AWS Academy: Cloud Developing</li>
                 </ul>
             </section>
-            
+
             <section id="contato" class="section">
                 <h2>Conecte-se Comigo</h2>
-                <div class="contact-links" style="display: flex; gap: 20px; font-size: 24px;">
-                    <a href="https://www.linkedin.com/in/joaotombi/" target="_blank" aria-label="LinkedIn" style="color: inherit;"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/JoaoT-dev" target="_blank" aria-label="GitHub" style="color: inherit;"><i class="fab fa-github"></i></a>
+                <div class="contact-links">
+                    <a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn"><i
+                            class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/JoaoT-dev" target="_blank" aria-label="GitHub"><i
+                            class="fab fa-github"></i></a>
                 </div>
             </section>
 
@@ -83,14 +109,11 @@
         </div>
     </footer>
 
-    
-    <!-- checkbox escondido -->
+
     <input type="checkbox" id="easter-toggle" class="easter-toggle">
 
-    <!-- o "botão secreto" estilizado como texto -->
     <label for="easter-toggle" class="secret-button">?</label>
 
-    <!-- área oculta -->
     <section class="easter-egg">
         <h2>🎮 Você desbloqueou a área secreta!</h2>
         <p>
@@ -99,28 +122,9 @@
             Aproveite este bônus especial e continue sua jornada!
         </p>
     </section>
-    
-    </body>
-    <script>
-    const toggleButton = document.querySelector('.dark-mode-toggle');
-    const body = document.body;
 
-    // Verifica tema salvo no localStorage
-    if (localStorage.getItem('theme') === 'light') {
-        body.classList.add('light-mode');
-        toggleButton.textContent = '🌙';
-    }
+    <script src="script.js" defer></script>
 
-    toggleButton.addEventListener('click', () => {
-        body.classList.toggle('light-mode');
+</body>
 
-        if (body.classList.contains('light-mode')) {
-            localStorage.setItem('theme', 'light');
-            toggleButton.textContent = '🌙';
-        } else {
-            localStorage.setItem('theme', 'dark');
-            toggleButton.textContent = '☀️';
-        }
-    });
-</script>
 </html>
