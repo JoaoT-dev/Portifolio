@@ -229,7 +229,7 @@ body.default-light {
     --text-color: #2b2b2b;
     --primary-color: #b85c38;
     --secondary-bg: #e8e3d9;
-    --link-color: #6a5f4b;
+    --link-color: #eb7a1dff;
     --hover-color: var(--primary-color);
     --button-text-color: var(--bg-color);
 }
