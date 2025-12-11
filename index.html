@@ -15,22 +15,25 @@
         <div class="container">
             <span class="logo">JoaoT-Dev</span>
             <nav>
-                <a href="#resumo">Resumo</a>
-                <a href="#projetos">Projetos</a>
-                <a href="#certificados">Certificações</a>
-                <a href="#contato">Contato</a>
+                <a href="#resumo" data-i18n="nav-resume">Resumo</a>
+                <a href="#projetos" data-i18n="nav-projects">Projetos</a>
+                <a href="#certificados" data-i18n="nav-certs">Certificações</a>
+                <a href="#contato" data-i18n="nav-contact">Contato</a>
 
                 <button class="dark-mode-toggle" aria-label="Alternar tema claro/escuro">☀️</button>
 
                 <select id="theme-selector" class="theme-selector" aria-label="Seletor de Temas Visuais">
-                    <option value="default">Tema Padrão</option>
-                    <option value="theme-tech">Tech Blue</option>
-                    <option value="theme-forest">Forest Green</option>
-                    <option value="theme-lava">Lava Red</option>
-                    <option value="theme-cyber">Cyber Purple</option>
-                    <option value="theme-deepsea">Deep Sea</option>
+                    <option value="default" data-i18n="theme-default">Tema Padrão</option>
+                    <option value="theme-tech" data-i18n="theme-tech">Tech Blue</option>
+                    <option value="theme-forest" data-i18n="theme-forest">Forest Green</option>
+                    <option value="theme-lava" data-i18n="theme-lava">Lava Red</option>
+                    <option value="theme-cyber" data-i18n="theme-cyber">Cyber Purple</option>
+                    <option value="theme-deepsea" data-i18n="theme-deepsea">Deep Sea</option>
                 </select>
 
+                <button id="language-toggle" class="lang-toggle" aria-label="Alternar idioma para Inglês">
+                    <span style="color: var(--primary-color);">PT</span> / EN
+                </button>
             </nav>
         </div>
     </header>
@@ -42,18 +45,18 @@
                     class="profile-photo">
                 <div class="profile-info">
                     <h1>João Paulo</h1>
-                    <p>AWS | Networking | Linux | Monitoring</p>
+                    <p data-i18n="profile-subtitle">AWS | Networking | Linux | Monitoring</p>
                 </div>
             </div>
             <section id="resumo" class="section">
-                <h2>Resumo Profissional</h2>
-                <p>
+                <h2 data-i18n="resume-title">Resumo Profissional</h2>
+                <p data-i18n="resume-p1">
                     Sou um Estudante de Redes de Computadores que busca ativamente o aprofundamento técnico e a
                     experiência prática. Sou genuinamente motivado pelo aprendizado contínuo, com um forte interesse em
                     tecnologias emergentes e na resolução eficiente de problemas complexos de infraestrutura.
                 </p>
                 <br>
-                <p>
+                <p data-i18n="resume-p2">
                     Minha área de especialização abrange diversas frentes cruciais do TI moderno. Tenho dedicado tempo
                     ao estudo e à aplicação prática de serviços de nuvem (Cloud Computing), configuração e virtualização
                     de servidores. Em todas as iniciativas, meu foco estratégico é a tríade: Segurança, Disponibilidade
@@ -61,26 +64,26 @@
 
                 </p>
                 <br>
-                <p>
+                <p data-i18n="resume-p3">
                     Possuo experiência prática comprovada, o que diferencia meu aprendizado teórico. Participei da
                     implantação e configuração de ambientes em nuvem nas principais plataformas do mercado, AWS e Azure.
                     Além disso, domino a configuração de ambientes virtuais e reais, sempre implementando as melhores
                     práticas para garantir a máxima segurança desses ambientes.
                 </p>
-                <a href="#projetos" class="portfolio-button">Ver Projetos →</a>
+                <a href="#projetos" class="portfolio-button" data-i18n="link-view-projects">Ver Projetos →</a>
             </section>
 
             <section id="projetos" class="section">
-                <h2>Projetos em Destaque</h2>
-                <h3>Monitoramento de servidores com Zabbix + Grafana:</h3>
-                <p>
+                <h2 data-i18n="projects-title">Projetos em Destaque</h2>
+                <h3 data-i18n="proj1-title">Monitoramento de servidores com Zabbix + Grafana:</h3>
+                <p data-i18n="proj1-p1">
                     Este projeto demonstrou minha capacidade de implementar soluções de monitoramento robustas que
                     impactam diretamente a eficiência operacional. Utilizamos o Zabbix para a coleta de dados e o
                     Grafana para a visualização, otimizando de forma significativa a gestão da infraestrutura de
                     servidores.
                 </p>
                 <br>
-                <p>
+                <p data-i18n="proj1-p2">
 
                     O Zabbix foi rigorosamente configurado para coletar métricas vitais e detalhadas — como uso de CPU,
                     memória, espaço em disco e status de serviços — sobre o desempenho dos servidores. A integração com
@@ -88,7 +91,7 @@
                     acessíveis e intuitivas para a análise da performance.
                 </p>
                 <br>
-                <p>
+                <p data-i18n="proj1-p3">
                     Embora tivéssemos desafios iniciais com a configuração dos agentes e a integração das ferramentas, a
                     flexibilidade do Zabbix e do Grafana nos permitiu fazer ajustes específicos para cada necessidade. O
                     resultado foi a implementação bem-sucedida de um sistema que gera alertas em tempo real, o que
@@ -96,21 +99,21 @@
                     estabilidade do serviço.
                 </p>
                 <br>
-                <h3>Rede multicloud AWS e Azure:</h3>
-                <p>
+                <h3 data-i18n="proj2-title">Rede multicloud AWS e Azure:</h3>
+                <p data-i18n="proj2-p1">
                     Este projeto estratégico focou na criação de uma rede multi-cloud de alta performance entre AWS e
                     Azure, com o objetivo principal de estabelecer uma comunicação segura e estável para garantir
                     redundância e alta disponibilidade dos serviços distribuídos.
                 </p>
                 <br>
-                <p>
+                <p data-i18n="proj2-p2">
                     O planejamento foi detalhado e essencial, envolvendo o desenho minucioso da topologia de rede,
                     definição de faixas de IP compatíveis e configuração de sub-redes e tabelas de roteamento em ambas
                     as nuvens. O ponto crucial foi permitir a comunicação direta entre instâncias na AWS (VPC) e
                     máquinas virtuais no Azure (Virtual Network), sem depender do acesso pela internet pública.
                 </p>
                 <br>
-                <p>
+                <p data-i18n="proj2-p3">
                     O sucesso deste projeto demonstrou minha competência em arquiteturas de rede avançadas e modernas.
                     Ele resultou em uma solução flexível e resiliente, que permite aproveitar o melhor de cada
                     fornecedor de nuvem, sendo uma iniciativa estratégica para a continuidade e expansão dos negócios.
@@ -119,17 +122,17 @@
             </section>
 
             <section id="certificados" class="section">
-                <h2>Certificações</h2>
+                <h2 data-i18n="certs-title">Certificações</h2>
                 <ul>
-                    <li>CCNA: Introduction to networks</li>
-                    <li>CCNA: Switching, Routing, and Wireless Essentials</li>
-                    <li>AWS Academy: Cloud Foundations</li>
-                    <li>AWS Academy: Cloud Developing</li>
+                    <li data-i18n="cert-ccna-intro">CCNA: Introduction to networks</li>
+                    <li data-i18n="cert-ccna-switch">CCNA: Switching, Routing, and Wireless Essentials</li>
+                    <li data-i18n="cert-aws-found">AWS Academy: Cloud Foundations</li>
+                    <li data-i18n="cert-aws-dev">AWS Academy: Cloud Developing</li>
                 </ul>
             </section>
 
             <section id="contato" class="section">
-                <h2>Conecte-se Comigo</h2>
+                <h2 data-i18n="connect-title">Conecte-se Comigo</h2>
                 <div class="contact-links">
                     <a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn"><i
                             class="fab fa-linkedin"></i></a>
@@ -143,7 +146,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 João Paulo. Todos os direitos reservados.</p>
+            <p data-i18n="footer-text">&copy; 2025 João Paulo. Todos os direitos reservados.</p>
         </div>
     </footer>
 
@@ -153,13 +156,13 @@
     <label for="easter-toggle" class="secret-button">?</label>
 
     <section class="easter-egg">
-        <h2>It's dangerous to go alone! Take this!</h2>
+        <h2 data-i18n="easter-title">It's dangerous to go alone! Take this!</h2>
         <p>
 
         <p style="text-align: center; line-height: 1.8;">
-            Você achou a parte secreta do meu site! <br><br>
-            Poucas pessoas sabem sobre esse segredo. <br><br>
-            Não conta isso pra ninguém, e meus parabéns. <br><br>
+            <span data-i18n="easter-p1">Você achou a parte secreta do meu site!</span> <br><br>
+            <span data-i18n="easter-p2">Poucas pessoas sabem sobre esse segredo.</span> <br><br>
+            <span data-i18n="easter-p3">Não conta isso pra ninguém, e meus parabéns.</span> <br><br>
             <img src="images/boa.gif" width="300" alt="Boa">
         </p>
 

@@ -36,7 +36,7 @@ body {
 }
 
 .container {
-    max-width: 768px;
+    max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
     padding: 0 15px;
@@ -45,6 +45,7 @@ body {
 /* ======================================= */
 /* 2. LAYOUT E COMPONENTES (Usando Variáveis) */
 /* ======================================= */
+
 
 .navbar {
     background-color: var(--bg-color);
@@ -81,6 +82,31 @@ nav a:hover {
 }
 
 .dark-mode-toggle,
+/* ======================================= */
+/* 2. LAYOUT E COMPONENTES (Usando Variáveis) */
+/* ======================================= */
+/* ... (Seções anteriores) ... */
+
+.lang-toggle /* Adicionado o novo seletor aqui */ { 
+    background: var(--secondary-bg);
+    border: 1px solid var(--secondary-bg);
+    color: var(--text-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 1rem;
+    transition: background-color 0.3s, color 0.3s;
+    outline: none; /* Para manter o visual limpo */
+}
+
+/* Estilo específico para o idioma para garantir que o texto seja centralizado/negrito */
+.lang-toggle {
+    font-weight: bold; 
+    padding: 5px 12px; /* Ajuste leve para o texto PT/EN caber bem */
+}
+
+/* ... (Restante do CSS) ... */
 .theme-selector {
     background: var(--secondary-bg);
     border: 1px solid var(--secondary-bg);
@@ -147,6 +173,7 @@ nav a:hover {
     font-weight: bold;
     color: var(--primary-color);
 }
+
 .section h3 {
     font-size: 1.25rem;
     font-weight: bold;
