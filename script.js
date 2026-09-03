@@ -2,172 +2,62 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
     const themeSelector = document.getElementById('theme-selector');
     const darkModeToggle = document.querySelector('.dark-mode-toggle');
-    const languageToggle = document.getElementById('language-toggle'); // Novo elemento
-
-    // ===========================================
-    // 1. LÓGICA DE TEMAS (EXISTENTE)
-    // ===========================================
-
-    const baseThemes = [
-        'theme-tech', 'theme-forest', 'theme-lava', 'theme-cyber', 'theme-deepsea'
-    ];
-    const lightModeSuffix = '-light';
-
-    function clearThemes() {
-        baseThemes.forEach(cls => {
-            body.classList.remove(cls);
-            body.classList.remove(cls + lightModeSuffix);
-        });
-        body.classList.remove('default-light');
-    }
-
-    /**
-     * Aplica o tema base e o modo (Dark/Light) salvo.
-     * @param {string} baseTheme - A classe base (ex: 'theme-cyber' ou 'default').
-     * @param {string} mode - 'dark' ou 'light'.
-     */
-    function applyTheme(baseTheme, mode) {
-        clearThemes();
-
-        if (baseTheme === 'default') {
-            localStorage.setItem('baseTheme', 'default');
-
-            if (mode === 'light') {
-                body.classList.add('default-light');
-                localStorage.setItem('themeMode', 'light');
-                darkModeToggle.textContent = '🌙';
-            } else {
-                localStorage.setItem('themeMode', 'dark');
-                darkModeToggle.textContent = '☀️';
-            }
-            return;
-        }
-
-        body.classList.add(baseTheme);
-        localStorage.setItem('baseTheme', baseTheme);
-
-        if (mode === 'light') {
-            body.classList.add(baseTheme + lightModeSuffix);
-            localStorage.setItem('themeMode', 'light');
-            darkModeToggle.textContent = '🌙';
-        } else {
-            localStorage.setItem('themeMode', 'dark');
-            darkModeToggle.textContent = '☀️';
-        }
-    }
-
-    // --- Inicialização e Listeners de Tema ---
-    const savedBaseTheme = localStorage.getItem('baseTheme') || 'default';
-    const savedThemeMode = localStorage.getItem('themeMode') || 'dark';
-
-    themeSelector.value = savedBaseTheme;
-    applyTheme(savedBaseTheme, savedThemeMode); // Inicializa o tema
-
-    themeSelector.addEventListener('change', (event) => {
-        const newBaseTheme = event.target.value;
-        const initialMode = localStorage.getItem('themeMode') || 'dark';
-        applyTheme(newBaseTheme, initialMode);
-    });
-
-    darkModeToggle.addEventListener('click', () => {
-        const currentBaseTheme = localStorage.getItem('baseTheme') || 'default';
-        const currentMode = localStorage.getItem('themeMode') || 'dark';
-        const newMode = (currentMode === 'dark') ? 'light' : 'dark';
-        applyTheme(currentBaseTheme, newMode);
-    });
-
-    // ===========================================
-    // 2. LÓGICA DE TRADUÇÃO (NOVA)
-    // ===========================================
-
+    const languageToggle = document.getElementById('language-toggle');
+    const baseThemes = ['theme-tech', 'theme-forest', 'theme-lava', 'theme-cyber', 'theme-deepsea'];
+    const validThemes = ['default', ...baseThemes];
     const translations = {
-        'pt': {
-            'nav-resume': 'Resumo', 'nav-projects': 'Projetos', 'nav-certs': 'Certificações', 'nav-contact': 'Contato',
-            'theme-default': 'Tema Padrão', 'theme-tech': 'Tech Blue', 'theme-forest': 'Forest Green',
-            'theme-lava': 'Lava Red', 'theme-cyber': 'Cyber Purple', 'theme-deepsea': 'Deep Sea',
-            'resume-title': 'Resumo Profissional', 'profile-subtitle': 'AWS | Networking | Linux | Monitoring',
-            'resume-p1': 'Sou um Estudante de Redes de Computadores que busca ativamente o aprofundamento técnico e a experiência prática. Sou genuinamente motivado pelo aprendizado contínuo, com um forte interesse em tecnologias emergentes e na resolução eficiente de problemas complexos de infraestrutura.',
-            'resume-p2': 'Minha área de especialização abrange diversas frentes cruciais do TI moderno. Tenho dedicado tempo ao estudo e à aplicação prática de serviços de nuvem (Cloud Computing), configuração e virtualização de servidores. Em todas as iniciativas, meu foco estratégico é a tríade: Segurança, Disponibilidade e Escalabilidade dos sistemas.',
-            'resume-p3': 'Possuo experiência prática comprovada, o que diferencia meu aprendizado teórico. Participei da implantação e configuração de ambientes em nuvem nas principais plataformas do mercado, AWS e Azure. Além disso, domino a configuração de ambientes virtuais e reais, sempre implementando as melhores práticas para garantir a máxima segurança desses ambientes.',
-            'link-view-projects': 'Ver Projetos →',
-            'projects-title': 'Projetos em Destaque', 'proj1-title': 'Monitoramento de servidores com Zabbix + Grafana:',
-            'proj1-p1': 'Este projeto demonstrou minha capacidade de implementar soluções de monitoramento robustas que impactam diretamente a eficiência operacional. Utilizamos o Zabbix para a coleta de dados e o Grafana para a visualização, otimizando de forma significativa a gestão da infraestrutura de servidores.',
-            'proj1-p2': 'O Zabbix foi rigorosamente configurado para coletar métricas vitais e detalhadas — como uso de CPU, memória, espaço em disco e status de serviços — sobre o desempenho dos servidores. A integração com o Grafana permitiu a criação de dashboards personalizados, tornando as métricas complexas claras, acessíveis e intuitivas para a análise da performance.',
-            'proj1-p3': 'Embora tivéssemos desafios iniciais com a configuração dos agentes e a integração das ferramentas, a flexibilidade do Zabbix e do Grafana nos permitiu fazer ajustes específicos para cada necessidade. O resultado foi a implementação bem-sucedida de um sistema que gera alertas em tempo real, o que permitiu uma resposta proativa a anomalias, reduzindo o tempo de inatividade e aumentando a estabilidade do serviço.',
-            'proj2-title': 'Rede multicloud AWS e Azure:', 'proj2-p1': 'Este projeto estratégico focou na criação de uma rede multi-cloud de alta performance entre AWS e Azure, com o objetivo principal de estabelecer uma comunicação segura e estável para garantir redundância e alta disponibilidade dos serviços distribuídos.',
-            'proj2-p2': 'O planejamento foi detalhado e essencial, envolvendo o desenho minucioso da topologia de rede, definição de faixas de IP compatíveis e configuração de sub-redes e tabelas de roteamento em ambas as nuvens. O ponto crucial foi permitir a comunicação direta entre instâncias na AWS (VPC) e máquinas virtuais no Azure (Virtual Network), sem depender do acesso pela internet pública.',
-            'proj2-p3': 'O sucesso deste projeto demonstrou minha competência em arquiteturas de rede avançadas e modernas. Ele resultou em uma solução flexível e resiliente, que permite aproveitar o melhor de cada fornecedor de nuvem, sendo uma iniciativa estratégica para a continuidade e expansão dos negócios.',
-            'certs-title': 'Certificações', 'connect-title': 'Conecte-se Comigo',
-            'easter-title': "It's dangerous to go alone! Take this!",
-            'easter-p1': 'Você achou a parte secreta do meu site!', 'easter-p2': 'Poucas pessoas sabem sobre esse segredo.',
-            'easter-p3': 'Não conta isso pra ninguém, e meus parabéns.',
-            'footer-text': '© 2025 João Paulo. Todos os direitos reservados.',
-            'aria-lang-label': 'Alternar idioma para Inglês'
+        pt: {
+            'nav-about': 'Sobre', 'nav-projects': 'Projetos', 'nav-experience': 'Experiências', 'nav-contact': 'Contato',
+            'theme-default': 'Tema padrão', 'theme-tech': 'Tech Blue', 'theme-forest': 'Forest Green', 'theme-lava': 'Lava Red', 'theme-cyber': 'Cyber Purple', 'theme-deepsea': 'Deep Sea',
+            'hero-eyebrow': 'Tecnologia da Informação', 'hero-title': 'Construindo soluções com curiosidade e prática.', 'hero-lede': 'Sou João Paulo, estudante de TI com formação técnica em Redes de Computadores e interesse em desenvolvimento, cloud e infraestrutura.', 'link-view-projects': 'Ver projetos',
+            'about-title': 'Sobre mim', 'about-p1': 'Olá! Sou estudante de Tecnologia da Informação, com formação técnica em Redes de Computadores e interesse em desenvolvimento de software, computação e infraestrutura.', 'about-p2': 'Gosto de aprender por meio da prática e transformar conhecimentos em projetos, explorando diferentes áreas da tecnologia e buscando constantemente evoluir minhas habilidades técnicas.', 'about-p3': 'Tenho conhecimentos e experiência acadêmica e prática em desenvolvimento e programação, redes de computadores, Linux e administração de sistemas, cloud computing, monitoramento de infraestrutura, automação e desenvolvimento web.', 'about-p4': 'Minha formação em Redes de Computadores me proporcionou uma base sólida em infraestrutura, enquanto meus estudos e projetos pessoais permitem explorar cada vez mais o desenvolvimento de software e outras áreas da computação.', 'about-p5': 'Atualmente, busco oportunidades de estágio em Tecnologia da Informação, nas quais possa aplicar meus conhecimentos, aprender com profissionais da área e contribuir para projetos reais.',
+            'projects-title': 'Projetos em destaque', 'project-portfolio-title': 'Portfólio', 'project-portfolio-description': 'Meu portfólio pessoal, reunindo projetos, conhecimentos e experiências na área de tecnologia.', 'project-sentinel-title': 'SentinelWatch', 'project-sentinel-description': 'Projeto de monitoramento de infraestrutura utilizando Zabbix e Grafana para acompanhar a disponibilidade e o desempenho de ambientes monitorados.', 'project-commercloud-title': 'CommerCloud', 'project-commercloud-description': 'Projeto acadêmico voltado à infraestrutura em Cloud, explorando soluções e serviços das plataformas AWS e Microsoft Azure.', 'project-smarthome-title': 'SmartHome Sensations', 'project-smarthome-description': 'Projeto multidisciplinar de IoT e acessibilidade, desenvolvido para explorar soluções de casa inteligente voltadas a pessoas com deficiência.', 'project-thevenin-title': 'Thevenin & Norton', 'project-thevenin-description': 'Aplicação web voltada ao estudo e cálculo de circuitos elétricos utilizando os Teoremas de Thévenin e Norton.', 'project-praticando-title': 'Praticando JavaScript', 'project-praticando-description': 'Repositório dedicado ao estudo e prática de JavaScript, com exercícios, experimentos e projetos desenvolvidos durante meu processo de aprendizagem.',
+            'tag-html': 'HTML', 'tag-css': 'CSS', 'tag-javascript': 'JavaScript', 'tag-monitoring': 'Monitoramento', 'tag-networking': 'Redes', 'tag-automation': 'Automação',
+            'experience-title': 'Experiências & atividades', 'experience-1': 'Conclusão do curso Técnico em Redes de Computadores pelo SENAI', 'experience-2': 'Participação na Tempest Academy Conference 2024', 'experience-3': 'Visita técnica à Cisco São Paulo em 2025', 'experience-4': 'Desenvolvimento de projetos pessoais e acadêmicos', 'experience-5': 'Estudos contínuos em tecnologia e computação', 'certs-title': 'Certificações', 'cert-ccna-intro': 'CCNA: Introduction to Networks', 'cert-ccna-switch': 'CCNA: Switching, Routing, and Wireless Essentials', 'cert-aws-found': 'AWS Academy: Cloud Foundations', 'cert-aws-dev': 'AWS Academy: Cloud Developing', 'connect-title': 'Conecte-se comigo', 'contact-copy': 'Estou aberto a oportunidades de estágio, projetos e conversas sobre tecnologia.', 'footer-text': '© 2026 João Paulo. Todos os direitos reservados.', 'aria-lang-label': 'Alternar idioma para Inglês', 'aria-light': 'Ativar modo claro', 'aria-dark': 'Ativar modo escuro'
         },
-        'en': {
-            'nav-resume': 'Summary', 'nav-projects': 'Projects', 'nav-certs': 'Certifications', 'nav-contact': 'Contact',
-            'theme-default': 'Default Theme', 'theme-tech': 'Tech Blue', 'theme-forest': 'Forest Green',
-            'theme-lava': 'Lava Red', 'theme-cyber': 'Cyber Purple', 'theme-deepsea': 'Deep Sea',
-            'resume-title': 'Professional Summary', 'profile-subtitle': 'AWS | Networking | Linux | Monitoring',
-            'resume-p1': 'I am a Computer Networks Student actively seeking technical depth and practical experience. I am genuinely driven by continuous learning, with a strong interest in emerging technologies and the efficient resolution of complex infrastructure problems.',
-            'resume-p2': 'My area of specialization covers several crucial fronts of modern IT. I have dedicated time to studying and practically applying cloud services (Cloud Computing), configuration, and server virtualization. In all initiatives, my strategic focus is the triad: Security, Availability, and Scalability of systems.',
-            'resume-p3': 'I possess proven practical experience, which distinguishes my theoretical learning. I participated in the deployment and configuration of cloud environments on the market\'s main platforms, AWS and Azure. Furthermore, I master the configuration of virtual and real environments, always implementing best practices to ensure the maximum security of these environments.',
-            'link-view-projects': 'View Projects →',
-            'projects-title': 'Featured Projects', 'proj1-title': 'Server monitoring with Zabbix + Grafana:',
-            'proj1-p1': 'This project demonstrated my ability to implement robust monitoring solutions that directly impact operational efficiency. We used Zabbix for data collection and Grafana for visualization, significantly optimizing server infrastructure management.',
-            'proj1-p2': 'Zabbix was rigorously configured to collect vital and detailed metrics — such as CPU usage, memory, disk space, and service status — on server performance. The integration with Grafana allowed for the creation of customized dashboards, making complex metrics clear, accessible, and intuitive for performance analysis.',
-            'proj1-p3': 'Although we had initial challenges with agent configuration and tool integration, the flexibility of Zabbix and Grafana allowed us to make specific adjustments for every need. The result was the successful implementation of a system that generates real-time alerts, which allowed for a proactive response to anomalies, reducing downtime and increasing service stability.',
-            'proj2-title': 'AWS and Azure multicloud network:', 'proj2-p1': 'This strategic project focused on creating a high-performance multi-cloud network between AWS and Azure, with the main objective of establishing secure and stable communication to ensure redundancy and high availability of distributed services.',
-            'proj2-p2': 'The planning was detailed and essential, involving the meticulous design of the network topology, definition of compatible IP ranges, and configuration of subnets and routing tables in both clouds. The crucial point was to allow direct communication between instances in the AWS (VPC) and virtual machines in the Azure (Virtual Network), without relying on public internet access.',
-            'proj2-p3': 'The success of this project demonstrated my competence in advanced and modern network architectures. It resulted in a flexible and resilient solution that allows leveraging the best of each cloud provider, making it a strategic initiative for business continuity and expansion.',
-            'certs-title': 'Certifications', 'connect-title': 'Connect With Me',
-            'easter-title': "It's dangerous to go alone! Take this!",
-            'easter-p1': 'You found the secret part of my website!', 'easter-p2': 'Few people know about this secret.',
-            'easter-p3': 'Don\'t tell anyone, and congratulations.',
-            'footer-text': '© 2025 João Paulo. All rights reserved.' ,
-            'aria-lang-label': 'Switch language to Portuguese'
+        en: {
+            'nav-about': 'About', 'nav-projects': 'Projects', 'nav-experience': 'Experience', 'nav-contact': 'Contact',
+            'theme-default': 'Default theme', 'theme-tech': 'Tech Blue', 'theme-forest': 'Forest Green', 'theme-lava': 'Lava Red', 'theme-cyber': 'Cyber Purple', 'theme-deepsea': 'Deep Sea',
+            'hero-eyebrow': 'Information Technology', 'hero-title': 'Building solutions through curiosity and practice.', 'hero-lede': 'I am João Paulo, an IT student with technical training in Computer Networks and an interest in software development, cloud, and infrastructure.', 'link-view-projects': 'View projects',
+            'about-title': 'About me', 'about-p1': 'Hello! I am an Information Technology student with technical training in Computer Networks and an interest in software development, computing, and infrastructure.', 'about-p2': 'I enjoy learning through practice and turning knowledge into projects, exploring different areas of technology while constantly developing my technical skills.', 'about-p3': 'My academic and practical knowledge covers development and programming, computer networks, Linux and systems administration, cloud computing, infrastructure monitoring, automation, and web development.', 'about-p4': 'My Computer Networks training gave me a solid infrastructure foundation, while my studies and personal projects allow me to explore software development and other areas of computing.', 'about-p5': 'I am currently looking for internship opportunities in Information Technology where I can apply my knowledge, learn from professionals, and contribute to real projects.',
+            'projects-title': 'Featured projects', 'project-portfolio-title': 'Portfolio', 'project-portfolio-description': 'My personal portfolio, bringing together projects, knowledge, and experience in technology.', 'project-sentinel-title': 'SentinelWatch', 'project-sentinel-description': 'An infrastructure monitoring project using Zabbix and Grafana to track the availability and performance of monitored environments.', 'project-commercloud-title': 'CommerCloud', 'project-commercloud-description': 'An academic cloud infrastructure project exploring solutions and services from AWS and Microsoft Azure.', 'project-smarthome-title': 'SmartHome Sensations', 'project-smarthome-description': 'A multidisciplinary IoT and accessibility project exploring smart-home solutions for people with disabilities.', 'project-thevenin-title': 'Thevenin & Norton', 'project-thevenin-description': 'A web application for studying and calculating electrical circuits using Thevenin and Norton theorems.', 'project-praticando-title': 'Practicing JavaScript', 'project-praticando-description': 'A repository for studying and practicing JavaScript through exercises, experiments, and projects developed during my learning process.',
+            'tag-html': 'HTML', 'tag-css': 'CSS', 'tag-javascript': 'JavaScript', 'tag-monitoring': 'Monitoring', 'tag-networking': 'Networking', 'tag-automation': 'Automation',
+            'experience-title': 'Experience & activities', 'experience-1': 'Completed the SENAI technical course in Computer Networks', 'experience-2': 'Participated in the Tempest Academy Conference 2024', 'experience-3': 'Technical visit to Cisco São Paulo in 2025', 'experience-4': 'Developed personal and academic projects', 'experience-5': 'Continuous studies in technology and computing', 'certs-title': 'Certifications', 'cert-ccna-intro': 'CCNA: Introduction to Networks', 'cert-ccna-switch': 'CCNA: Switching, Routing, and Wireless Essentials', 'cert-aws-found': 'AWS Academy: Cloud Foundations', 'cert-aws-dev': 'AWS Academy: Cloud Developing', 'connect-title': 'Connect with me', 'contact-copy': 'I am open to internship opportunities, projects, and conversations about technology.', 'footer-text': '© 2026 João Paulo. All rights reserved.', 'aria-lang-label': 'Switch language to Portuguese', 'aria-light': 'Activate light mode', 'aria-dark': 'Activate dark mode'
         }
     };
 
-    let currentLang = localStorage.getItem('language') || 'pt';
+    const validLanguage = value => Object.hasOwn(translations, value) ? value : 'pt';
+    const validTheme = value => validThemes.includes(value) ? value : 'default';
+    const applyTheme = (baseTheme, mode) => {
+        const safeTheme = validTheme(baseTheme);
+        const safeMode = mode === 'light' ? 'light' : 'dark';
+        body.classList.remove(...baseThemes, ...baseThemes.map(theme => `${theme}-light`), 'default-light');
+        if (safeTheme !== 'default') body.classList.add(safeTheme);
+        if (safeMode === 'light') body.classList.add(safeTheme === 'default' ? 'default-light' : `${safeTheme}-light`);
+        localStorage.setItem('baseTheme', safeTheme);
+        localStorage.setItem('themeMode', safeMode);
+        darkModeToggle.textContent = safeMode === 'dark' ? '☀' : '☾';
+        darkModeToggle.setAttribute('aria-pressed', String(safeMode === 'light'));
+        darkModeToggle.setAttribute('aria-label', translations[validLanguage(localStorage.getItem('language'))][safeMode === 'dark' ? 'aria-light' : 'aria-dark']);
+    };
 
-    function applyTranslation(lang) {
+    let currentLang = validLanguage(localStorage.getItem('language'));
+    const applyTranslation = lang => {
+        currentLang = validLanguage(lang);
         document.querySelectorAll('[data-i18n]').forEach(element => {
-            const key = element.getAttribute('data-i18n');
-            if (translations[lang] && translations[lang][key]) {
-                // Para <option>, use textContent
-                if (element.tagName === 'OPTION') {
-                    element.textContent = translations[lang][key];
-                } else {
-                    element.innerHTML = translations[lang][key]; // Permite manter tags <strong>, <em>, etc.
-                }
-            }
+            const value = translations[currentLang][element.dataset.i18n];
+            if (value) element.textContent = value;
         });
+        document.documentElement.lang = currentLang === 'pt' ? 'pt-BR' : 'en';
+        languageToggle.textContent = currentLang === 'pt' ? 'PT / EN' : 'EN / PT';
+        languageToggle.setAttribute('aria-label', translations[currentLang]['aria-lang-label']);
+        localStorage.setItem('language', currentLang);
+        applyTheme(localStorage.getItem('baseTheme'), localStorage.getItem('themeMode'));
+    };
 
-        // Atualiza o atributo lang no <html>
-        document.documentElement.setAttribute('lang', lang);
-
-        // Atualiza a exibição do botão de idioma
-        const otherLang = (lang === 'pt' ? 'EN' : 'PT');
-        const langCode = lang.toUpperCase();
-
-        languageToggle.innerHTML = `<span style="color: var(--primary-color);">${langCode}</span> / ${otherLang}`;
-        languageToggle.setAttribute('aria-label', translations[lang]['aria-lang-label']);
-
-        // Salva a preferência
-        localStorage.setItem('language', lang);
-    }
-
-    function toggleLanguage() {
-        currentLang = (currentLang === 'pt' ? 'en' : 'pt');
-        applyTranslation(currentLang);
-    }
-
-    // --- Inicialização e Listener de Idioma ---
-    if (languageToggle) {
-        languageToggle.addEventListener('click', toggleLanguage);
-    }
-
-    // Aplica a tradução ao carregar a página
+    themeSelector.value = validTheme(localStorage.getItem('baseTheme'));
     applyTranslation(currentLang);
+    themeSelector.addEventListener('change', event => applyTheme(event.target.value, localStorage.getItem('themeMode')));
+    darkModeToggle.addEventListener('click', () => applyTheme(localStorage.getItem('baseTheme'), localStorage.getItem('themeMode') === 'dark' ? 'light' : 'dark'));
+    languageToggle.addEventListener('click', () => applyTranslation(currentLang === 'pt' ? 'en' : 'pt'));
 });
